@@ -1,0 +1,46 @@
+CREATE TABLE daddyschool.`academic_facilities` (
+  `id` int(11) NOT NULL,
+  `language_lab` bit(1) DEFAULT NULL,
+  `library` bit(1) DEFAULT NULL,
+  `maths_lab` bit(1) DEFAULT NULL,
+  `science_lab` bit(1) DEFAULT NULL,
+  `smart_class_room` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE daddyschool.`general_facilities` (
+  `id` int(11) NOT NULL,
+  `canteen` bit(1) DEFAULT NULL,
+  `cctv` bit(1) DEFAULT NULL,
+  `doctor` bit(1) DEFAULT NULL,
+  `transport` bit(1) DEFAULT NULL,
+  `transport_with_gps` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE daddyschool.`sports_facilities` (
+  `id` int(11) NOT NULL,
+  `badminton_court` bit(1) DEFAULT NULL,
+  `basket_ball_court` bit(1) DEFAULT NULL,
+  `indoor_games` bit(1) DEFAULT NULL,
+  `play_ground` bit(1) DEFAULT NULL,
+  `swimming_pool` bit(1) DEFAULT NULL,
+  `yoga_hall` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE daddyschool.`facilities` (
+  `id` int(11) NOT NULL,
+  `academics` int(11) DEFAULT NULL,
+  `general` int(11) DEFAULT NULL,
+  `sports` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK64dmi5mf9hqjx7v6ie28glc85` (`academics`),
+  KEY `FKmh04sd8vosqvui44onlj3uks7` (`general`),
+  KEY `FK6run7jonkw3m0c2bvok14097g` (`sports`),
+  CONSTRAINT `FK64dmi5mf9hqjx7v6ie28glc85` FOREIGN KEY (`academics`) REFERENCES `academic_facilities` (`id`),
+  CONSTRAINT `FK6run7jonkw3m0c2bvok14097g` FOREIGN KEY (`sports`) REFERENCES `sports_facilities` (`id`),
+  CONSTRAINT `FKmh04sd8vosqvui44onlj3uks7` FOREIGN KEY (`general`) REFERENCES `general_facilities` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
